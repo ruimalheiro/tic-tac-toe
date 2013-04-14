@@ -14,4 +14,3 @@ The repository main intent is to **track improvments** to the version be feature
 Implemented in **Java using Swing**.
 
 Created and maintained by [Rui Malheiro](https://github.com/ruimalheiro) and [Rui d'Orey](https://github.com/RuiOrey).
-This is a fun game to test MIN MAX algorithm.
