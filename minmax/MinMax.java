@@ -49,8 +49,8 @@ public class MinMax {
 		} else {
 			int alpha = Integer.MIN_VALUE;
 			int beta = Integer.MAX_VALUE;
-			int v;
-			result = new Node();
+			int v = MAX_VALUE_ALFA_BETA(currentstate, alpha, beta);
+			printResults(start);
 			result = getBest(currentstate);
 		}
 
@@ -106,6 +106,69 @@ public class MinMax {
 		}
 		return v;
 	}
+
+	/******************************************************************************************
+	 * Min Max algorithm with Alfa Beta pruning. *
+	 ******************************************************************************************/
+	public int MAX_VALUE_ALFA_BETA(Node currentstate, int alpha, int beta) {
+
+		board.setNumberOfVisitedNodes(board.getNumberOfVisitedNodes() + 1);
+
+		if (currentstate.checkWinnerBest(board.getPlayLeft()) != -2) {
+			return currentstate.checkWinnerBest(board.getPlayLeft());
+		}
+
+		int v = alpha;
+		currentstate.expandNode(false);
+
+		board.setNumberOfExpandedNodes(board.getNumberOfExpandedNodes()
+				+ currentstate.getChildrenList().size());
+
+		for (Node s : currentstate.getChildrenList()) {
+			v = Math.max(alpha, MIN_VALUE_ALFA_BETA(s, alpha, beta));
+			if (v >= beta) {
+				v = beta;
+			}
+			if (s.getParent().getParent() == null) {
+				s.setValue(v);
+				board.getTempList().add(s);
+			}
+			if (v >= beta) {
+				return beta;
+			}
+		}
+		return v;
+	}
+
+	public int MIN_VALUE_ALFA_BETA(Node currentstate, int alpha, int beta) {
+
+		board.setNumberOfVisitedNodes(board.getNumberOfVisitedNodes() + 1);
+
+		if (currentstate.checkWinnerBest(board.getPlayLeft()) != -2) {
+			return currentstate.checkWinnerBest(board.getPlayLeft());
+		}
+		int v = beta;
+		currentstate.expandNode(true);
+
+		board.setNumberOfExpandedNodes(board.getNumberOfExpandedNodes()
+				+ currentstate.getChildrenList().size());
+
+		for (Node s : currentstate.getChildrenList()) {
+			v = Math.min(beta, MAX_VALUE_ALFA_BETA(s, alpha, beta));
+			if (v <= alpha) {
+				v = alpha;
+			}
+			if (s.getParent().getParent() == null) {
+				s.setValue(v);
+				board.getTempList().add(s);
+			}
+			if (v <= alpha) {
+				return alpha;
+			}
+		}
+		return v;
+	}
+
 
 	/******************************************************************************************
 	 * Get the best option. *
