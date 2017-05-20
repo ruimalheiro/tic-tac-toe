@@ -18,73 +18,73 @@ import javax.swing.border.EmptyBorder;
  */
 
 public class MainWindow extends JFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
 
-	private ImageIcon titleGaloImage;
+  private ImageIcon titleGaloImage;
 
-	private JLabel titleGaloLabel;
-	private JButton startButton;
-	private JButton exitButton;
+  private JLabel titleGaloLabel;
+  private JButton startButton;
+  private JButton exitButton;
 
-	private JPanel mainPanel;
+  private JPanel mainPanel;
 
-	private ImageIcon playerImage;
-	private ImageIcon computerImage;
+  private ImageIcon playerImage;
+  private ImageIcon computerImage;
 
-	public MainWindow() {
-		setTitle("Tic Tac Toe");
-		setSize(400, 410);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setResizable(false);
+  public MainWindow() {
+    setTitle("Tic Tac Toe");
+    setSize(400, 410);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocationRelativeTo(null);
+    setResizable(false);
 
-		titleGaloImage = new ImageIcon(getClass().getResource(
-				"/images/titlegalo.png"));
+    titleGaloImage = new ImageIcon(getClass().getResource(
+        "/images/titlegalo.png"));
 
-		titleGaloLabel = new JLabel(titleGaloImage);
-		titleGaloLabel.setPreferredSize(new Dimension(500, 300));
+    titleGaloLabel = new JLabel(titleGaloImage);
+    titleGaloLabel.setPreferredSize(new Dimension(500, 300));
 
-		startButton = new JButton("New game");
-		exitButton = new JButton("Exit game");
+    startButton = new JButton("New game");
+    exitButton = new JButton("Exit game");
 
-		mainPanel = new JPanel();
-		mainPanel.setBorder(new EmptyBorder(new Insets(0, 10, 10, 10)));
-		mainPanel.setLayout(new BorderLayout());
-		mainPanel.add(titleGaloLabel, BorderLayout.NORTH);
-		mainPanel.add(startButton, BorderLayout.WEST);
-		mainPanel.add(exitButton, BorderLayout.EAST);
+    mainPanel = new JPanel();
+    mainPanel.setBorder(new EmptyBorder(new Insets(0, 10, 10, 10)));
+    mainPanel.setLayout(new BorderLayout());
+    mainPanel.add(titleGaloLabel, BorderLayout.NORTH);
+    mainPanel.add(startButton, BorderLayout.WEST);
+    mainPanel.add(exitButton, BorderLayout.EAST);
 
-		playerImage = new ImageIcon(getClass().getResource("/images/O2.png"));
-		computerImage = new ImageIcon(getClass().getResource("/images/X2.png"));
+    playerImage = new ImageIcon(getClass().getResource("/images/O2.png"));
+    computerImage = new ImageIcon(getClass().getResource("/images/X2.png"));
 
-		configureStartButton(startButton, this);
-		configureExitButton(exitButton);
-		startButton.setIcon(playerImage);
-		exitButton.setIcon(computerImage);
+    configureStartButton(startButton, this);
+    configureExitButton(exitButton);
+    startButton.setIcon(playerImage);
+    exitButton.setIcon(computerImage);
 
-		add(mainPanel);
-	}
+    add(mainPanel);
+  }
 
-	private void configureStartButton(final JButton start,
-			final MainWindow mainWindow) {
-		start.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent a) {
-				GameType gameType = new GameType();
-				mainWindow.dispose();
-				gameType.setVisible(true);
+  private void configureStartButton(final JButton start,
+      final MainWindow mainWindow) {
+    start.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent a) {
+        GameType gameType = new GameType();
+        mainWindow.dispose();
+        gameType.setVisible(true);
 
-			}
-		});
-	}
+      }
+    });
+  }
 
-	private void configureExitButton(final JButton exit) {
-		exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent a) {
-				System.exit(0);
-			}
-		});
-	}
+  private void configureExitButton(final JButton exit) {
+    exit.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent a) {
+        System.exit(0);
+      }
+    });
+  }
 }

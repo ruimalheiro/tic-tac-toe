@@ -5,8 +5,8 @@ import gui.MainWindow;
  */
 
 public class TicTacToe {
-	public static void main(String args[]) {
-		MainWindow mainWindow = new MainWindow();
-		mainWindow.setVisible(true);
-	}
+  public static void main(String args[]) {
+    MainWindow mainWindow = new MainWindow();
+    mainWindow.setVisible(true);
+  }
 }
